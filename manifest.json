@@ -2,7 +2,8 @@
   "name": "AttendTrack – Offline Attendance Tracker",
   "short_name": "AttendTrack",
   "description": "Track college lecture attendance offline.",
-  "start_url": "./index.html",
+  "start_url": ".",
+  "scope": ".",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0d1b2a",
@@ -21,7 +22,5 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
-  ],
-  "categories": ["education", "productivity"],
-  "screenshots": []
+  ]
 }
