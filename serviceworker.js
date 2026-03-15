@@ -19,6 +19,8 @@ const CACHE_FILES = [
   './style.css',
   './script.js',
   './manifest.json',
+  './icon-192.png',
+  './icon-512.png',
 ];
 
 /* ---- INSTALL ----
