@@ -104,26 +104,26 @@
 
         <!-- Image proof upload -->
         <div class="form-group">
-          <label class="form-label">Image Proof (optional)</label>
-          <div class="proof-row">
-            <div class="proof-slot" id="proof-slot-1">
-              <label class="proof-label" for="proof-input-1">
-                <span class="proof-icon">📷</span>
-                <span class="proof-text">Proof 1</span>
-              </label>
-              <input type="file" id="proof-input-1" accept="image/*" class="proof-file-input" onchange="handleProofUpload(1, this)" />
-              <div class="proof-preview" id="proof-preview-1"></div>
-            </div>
-            <div class="proof-slot" id="proof-slot-2">
-              <label class="proof-label" for="proof-input-2">
-                <span class="proof-icon">📷</span>
-                <span class="proof-text">Proof 2</span>
-              </label>
-              <input type="file" id="proof-input-2" accept="image/*" class="proof-file-input" onchange="handleProofUpload(2, this)" />
-              <div class="proof-preview" id="proof-preview-2"></div>
-            </div>
-          </div>
-        </div>
+  <label class="form-label">Image Proof (optional)</label>
+  <div class="proof-row">
+    <div class="proof-slot" id="proof-slot-1">
+      <label class="proof-label">
+        <span class="proof-icon">📷</span>
+        <span class="proof-text">Proof 1</span>
+        <input type="file" id="proof-input-1" accept="image/*" class="proof-file-input" onchange="handleProofUpload(1, this)" />
+      </label>
+      <div class="proof-preview" id="proof-preview-1"></div>
+    </div>
+    <div class="proof-slot" id="proof-slot-2">
+      <label class="proof-label">
+        <span class="proof-icon">📷</span>
+        <span class="proof-text">Proof 2</span>
+        <input type="file" id="proof-input-2" accept="image/*" class="proof-file-input" onchange="handleProofUpload(2, this)" />
+      </label>
+      <div class="proof-preview" id="proof-preview-2"></div>
+    </div>
+  </div>
+</div>
 
         <!-- Submit / Cancel buttons -->
         <div class="form-actions">
