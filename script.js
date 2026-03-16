@@ -145,74 +145,36 @@ function isDuplicate(subject, date, time, excludeId) {
 }
 
 /* ==========================================
-   IMAGE COMPRESSION
-   ========================================== */
-/* ==========================================
-    IMAGE COMPRESSION (FIXED FOR ANDROID)
+    IMAGE COMPRESSION
     ========================================== */
 function compressImage(file) {
    return new Promise((resolve, reject) => {
-     // Validate file exists
-     if (!file || !file.type.startsWith('image/')) {
-       return reject(new Error('Invalid image file'));
-     }
-
      const url = URL.createObjectURL(file);
      const img = new Image();
 
      img.onload = () => {
-       try {
-         let { width, height } = img;
-         
-         // Resize if needed
-         if (width > IMG_MAX_DIM || height > IMG_MAX_DIM) {
-           if (width >= height) {
-             height = Math.round((height / width) * IMG_MAX_DIM);
-             width = IMG_MAX_DIM;
-           } else {
-             width = Math.round((width / height) * IMG_MAX_DIM);
-             height = IMG_MAX_DIM;
-           }
+       let { width, height } = img;
+       if (width > IMG_MAX_DIM || height > IMG_MAX_DIM) {
+         if (width >= height) {
+           height = Math.round((height / width) * IMG_MAX_DIM);
+           width = IMG_MAX_DIM;
+         } else {
+           width = Math.round((width / height) * IMG_MAX_DIM);
+           height = IMG_MAX_DIM;
          }
-
-         const canvas = document.createElement('canvas');
-         canvas.width = width;
-         canvas.height = height;
-         canvas.getContext('2d').drawImage(img, 0, 0, width, height);
-         
-         URL.revokeObjectURL(url);
-
-         // ANDROID FIX: Use setTimeout to ensure toBlob completes
-         setTimeout(() => {
-           canvas.toBlob(
-             (blob) => {
-               if (!blob) {
-                 reject(new Error('Canvas toBlob returned null - canvas may be too large or corrupted'));
-               } else {
-                 resolve(blob);
-               }
-             },
-             'image/jpeg',
-             IMG_QUALITY
-           );
-         }, 100);
-
-       } catch (err) {
-         URL.revokeObjectURL(url);
-         reject(new Error('Canvas error: ' + err.message));
        }
-     };
-
-     img.onerror = () => {
+       const canvas = document.createElement('canvas');
+       canvas.width  = width;
+       canvas.height = height;
+       canvas.getContext('2d').drawImage(img, 0, 0, width, height);
        URL.revokeObjectURL(url);
-       reject(new Error('Failed to load image - file may be corrupted'));
+       canvas.toBlob(
+         blob => blob ? resolve(blob) : reject(new Error('toBlob failed')),
+         'image/jpeg', IMG_QUALITY
+       );
      };
 
-     img.onabort = () => {
-       URL.revokeObjectURL(url);
-       reject(new Error('Image load was aborted'));
-     };
-
+     img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('Image load failed')); };
      img.src = url;
    });
 }
