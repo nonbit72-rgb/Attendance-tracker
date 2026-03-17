@@ -1056,15 +1056,15 @@ function showImportStatus(msg, type) {
 }
 /* ==========================================
    BUNK CALCULATOR
-   Overall target : 85%
-   Per-subject target : 60%
+   Overall target : 75%
+   Per-subject target : 75%
    ========================================== */
 function renderBunkCalc() {
   const el = document.getElementById('bunk-section');
   if (!el) return;
 
-  const OVERALL_TARGET = 0.80;
-  const SUBJECT_TARGET = 0.60;
+  const OVERALL_TARGET = 0.75;
+  const SUBJECT_TARGET = 0.75;
 
   const total   = state.lectures.length;
   const present = state.lectures.filter(l => l.status === 'Present').length;
@@ -1075,7 +1075,7 @@ function renderBunkCalc() {
     overallHTML = `
       <div class="bunk-overall">
         <div>
-          <div class="bunk-overall-label">Overall (80% target)</div>
+          <div class="bunk-overall-label">Overall (75% target)</div>
           <div class="bunk-overall-sub">No lectures recorded yet</div>
         </div>
         <div class="bunk-badge bunk-safe"><small>Status</small>—</div>
@@ -1102,7 +1102,7 @@ function renderBunkCalc() {
     overallHTML = `
       <div class="bunk-overall">
         <div>
-          <div class="bunk-overall-label">Overall (80% target)</div>
+          <div class="bunk-overall-label">Overall (75% target)</div>
           <div class="bunk-overall-sub">${present}/${total} present · currently ${pctDisplay}%</div>
         </div>
         <div class="bunk-badge ${badgeClass}"><small>${badgeSub}</small>${badgeText}</div>
@@ -1142,7 +1142,7 @@ function renderBunkCalc() {
 
   if (subjects.length > 0) {
     rowsHTML = `<div class="bunk-row" style="background:transparent;border:none;padding:2px 4px;">
-      <span style="font-size:10px;color:var(--text-faint);">Per Subject (60% target)</span>
+      <span style="font-size:10px;color:var(--text-faint);">Per Subject (75% target)</span>
     </div>` + rowsHTML;
   }
 
